@@ -1,0 +1,8 @@
+terraform-provider-*
+.terraform
+terraform.tfstate*
+*.log
+
+pkg/
+
+examples/**/.ssh
