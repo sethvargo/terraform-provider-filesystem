@@ -48,6 +48,7 @@ func resourceFileReader() *schema.Resource {
 				Type:        schema.TypeString,
 				Description: "Raw file contents",
 				Computed:    true,
+				Sensitive:   true,
 			},
 
 			"name": &schema.Schema{

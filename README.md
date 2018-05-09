@@ -146,6 +146,12 @@ at start time. This Terraform provider enables you to treat files just like
 other cloud resources, resolving them at runtime. This allows you to read and
 write files from other sources without worrying about dependency ordering.
 
+**Q: Is it secure?**<br>
+A: The contents of files written and read are stored **in plain text** in the
+statefile. They are marked as sensitive in the output, but they will still be
+stored in the state. This is required in order for other resources to be able to
+read the values. If you are using these resources with sensitive data, you
+should encrypt your state using [remote state][remote-state].
 
 ## License & Author
 
@@ -169,3 +175,4 @@ limitations under the License.
 [terraform]: https://www.terraform.io/
 [releases]: https://github.com/sethvargo/terraform-provider-filesystem/releases
 [examples]: https://github.com/sethvargo/terraform-provider-filesystem/tree/master/examples
+[remote-state]: https://www.terraform.io/docs/state/remote.html

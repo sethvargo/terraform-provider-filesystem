@@ -50,6 +50,7 @@ func resourceFileWriter() *schema.Resource {
 				Type:        schema.TypeString,
 				Description: "Raw file contents",
 				Optional:    true,
+				Sensitive:   true,
 			},
 
 			"mode": &schema.Schema{
