@@ -16,6 +16,7 @@
 package filesystem
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -66,7 +67,7 @@ type fileStat struct {
 	name     string
 	contents string
 	size     int64
-	mode     os.FileMode
+	mode     string
 }
 
 func readFileAndStats(p string) (*fileStat, error) {
@@ -98,7 +99,7 @@ func readFileAndStats(p string) (*fileStat, error) {
 		name:     stat.Name(),
 		contents: string(contents),
 		size:     stat.Size(),
-		mode:     stat.Mode(),
+		mode:     fmt.Sprintf("%#o", stat.Mode()),
 	}, nil
 }
 

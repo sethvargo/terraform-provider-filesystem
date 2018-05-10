@@ -138,7 +138,7 @@ func resourceFileWriterRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("name", stat.name)
 	d.Set("contents", stat.contents)
 	d.Set("size", stat.size)
-	d.Set("mode", fmt.Sprintf("%#o", stat.mode))
+	d.Set("mode", stat.mode)
 
 	return nil
 }

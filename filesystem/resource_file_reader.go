@@ -64,7 +64,7 @@ func resourceFileReader() *schema.Resource {
 			},
 
 			"mode": &schema.Schema{
-				Type:        schema.TypeInt,
+				Type:        schema.TypeString,
 				Description: "File mode bits",
 				Computed:    true,
 			},

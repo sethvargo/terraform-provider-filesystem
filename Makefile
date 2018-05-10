@@ -106,6 +106,10 @@ else
 endif
 .PHONY: dist
 
+# test runs the tests
+test:
+	@go test -v $(TEST)
+
 # _cleanup removes any previous binaries
 _cleanup:
 	@rm -rf "${CURRENT_DIR}/pkg/"

@@ -56,8 +56,8 @@
     "service/s3",
     "service/sts"
   ]
-  revision = "31bd69f7db00cbf3d85d129e16d42304cb6e455f"
-  version = "v1.13.44"
+  revision = "70f8337208b7dfd7940a7e13dca0804464b74274"
+  version = "v1.13.45"
 
 [[projects]]
   branch = "master"
@@ -76,6 +76,12 @@
   packages = ["."]
   revision = "2ee87856327ba09384cabd113bc6b5d174e9ec0f"
   version = "v3.5.1"
+
+[[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+  version = "v1.1.0"
 
 [[projects]]
   name = "github.com/fatih/color"
@@ -199,6 +205,12 @@
   revision = "fa9f258a92500514cc8e9c67020487709df92432"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/hashicorp/logutils"
+  packages = ["."]
+  revision = "0dc08b1671f34c4250ce212759ebd880f743d883"
+
+[[projects]]
   name = "github.com/hashicorp/terraform"
   packages = [
     "config",
@@ -207,8 +219,11 @@
     "config/module",
     "dag",
     "flatmap",
+    "helper/config",
     "helper/hashcode",
     "helper/hilmapstructure",
+    "helper/logging",
+    "helper/resource",
     "helper/schema",
     "httpclient",
     "moduledeps",
@@ -360,7 +375,7 @@
     "openpgp/packet",
     "openpgp/s2k"
   ]
-  revision = "4ec37c66abab2c7e02ae775328b2ff001c3f025a"
+  revision = "2d027ae1dddd4694d54f7a8b6cbe78dca8720226"
 
 [[projects]]
   branch = "master"
@@ -376,13 +391,13 @@
     "internal/timeseries",
     "trace"
   ]
-  revision = "d11bb6cd8e3c4e60239c9cb20ef68586d74500d0"
+  revision = "f73e4c9ed3b7ebdd5f699a16a880c2b1994e50dd"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "7db1c3b1a98089d0071c84f646ff5c96aad43682"
+  revision = "7dfd1290c7917b7ba22824b9d24954ab3002fe24"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -447,6 +462,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5588b742e86d9f3536e0fcdde742140e919cb6bb4fa1546c0e7df9222c07c20f"
+  inputs-digest = "86b075da35712f46c11a215f8ffab774d7c84e08e56589ebcb15c8121d490de8"
   solver-name = "gps-cdcl"
   solver-version = 1
