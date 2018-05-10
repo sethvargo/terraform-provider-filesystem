@@ -163,7 +163,7 @@ parent directory creation, or controlling deletion behavior. Additionally, as a
 **super ultra bad thing**, the file permissions are written as 0777 (globally
 executable), leaving a large security loophole.
 
-1. The equivalent "writer" does not use a atomic file write. For large file
+1. The equivalent "writer" does not use an atomic file write. For large file
 chunks, this can result in a partially committed file and/or improper
 permissions that compromise security.
 
