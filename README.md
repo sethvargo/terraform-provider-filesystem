@@ -146,6 +146,36 @@ at start time. This Terraform provider enables you to treat files just like
 other cloud resources, resolving them at runtime. This allows you to read and
 write files from other sources without worrying about dependency ordering.
 
+**Q: How is this different than [terraform-provider-local][terraform-provider-local]?**<br>
+A: There are quite a few differences:
+
+1. The equivalent "reader" is a data source. Data sources are resolved before
+resources run, meaning it is not possible to use the data source to read a file
+that is created _during_ the terraform run. Terraform will fail early that it
+could not read the file. This provider specifically addresses that challenge by
+using a resource instead of a data source.
+
+1. The equivalent "reader" does not expose all the fields of the stat file (like
+mode and owner permissions).
+
+1. The equivalent "writer" does not allow setting file permissions, controlling
+parent directory creation, or controlling deletion behavior. Additionally, as a
+**super ultra bad thing**, the file permissions are written as 0777 (globally
+executable), leaving a large security loophole.
+
+1. The equivalent "writer" does not use a atomic file write. For large file
+chunks, this can result in a partially committed file and/or improper
+permissions that compromise security.
+
+1. Neither the equivalent "reader" nor the "writer" limit the size of the file
+being read/written. This poses a security threat as an attacker could overflow
+the process (think about Terraform running arbitrary configuration as a hosted
+service).
+
+1. The terraform-provider-local stores the full path of the file in the state,
+rendering the configurations un-portable. This provider calculates the filepath
+relative to the Terraform module, allowing for more flexibility.
+
 **Q: Is it secure?**<br>
 A: The contents of files written and read are stored **in plain text** in the
 statefile. They are marked as sensitive in the output, but they will still be
@@ -176,3 +206,4 @@ limitations under the License.
 [releases]: https://github.com/sethvargo/terraform-provider-filesystem/releases
 [examples]: https://github.com/sethvargo/terraform-provider-filesystem/tree/master/examples
 [remote-state]: https://www.terraform.io/docs/state/remote.html
+[terraform-provider-local]: https://github.com/terraform-providers/terraform-provider-local
