@@ -3,6 +3,6 @@ terraform-provider-*
 terraform.tfstate*
 *.log
 
-pkg/
+build/
 
 examples/**/.ssh

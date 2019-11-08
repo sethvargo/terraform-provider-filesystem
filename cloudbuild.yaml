@@ -1,0 +1,31 @@
+steps:
+- id: test
+  name: golang:1.13
+  env:
+  - GO111MODULE=on
+  entrypoint: make
+  args: ['test-acc']
+
+- id: build
+  name: golang:1.13
+  env:
+  - GO111MODULE=on
+  entrypoint: make
+  args: ['build']
+
+- id: publish
+  name: buildkite/github-release:latest
+  env:
+  - GITHUB_RELEASE_REPOSITORY=$REPO_NAME
+  - GITHUB_RELEASE_COMMIT=$COMMIT_SHA
+  - GITHUB_RELEASE_TAG=$TAG_NAME
+  secretEnv:
+  - 'GITHUB_RELEASE_ACCESS_TOKEN'
+  args:
+  - $TAG_NAME
+  - build/*
+
+secrets:
+  - kmsKeyName: projects/...
+    secretEnv:
+      GITHUB_RELEASE_ACCESS_TOKEN: ...
