@@ -20,12 +20,12 @@ steps:
   - GITHUB_RELEASE_COMMIT=$COMMIT_SHA
   - GITHUB_RELEASE_TAG=$TAG_NAME
   secretEnv:
-  - 'GITHUB_RELEASE_ACCESS_TOKEN'
+  - GITHUB_RELEASE_ACCESS_TOKEN
   args:
   - $TAG_NAME
   - build/*
 
 secrets:
-  - kmsKeyName: projects/...
+  - kmsKeyName: projects/sethvargo-cicd/locations/global/keyRings/terraform-provider-filesystem/cryptoKeys/github-token
     secretEnv:
-      GITHUB_RELEASE_ACCESS_TOKEN: ...
+      GITHUB_RELEASE_ACCESS_TOKEN: CiQAOj3Ti/p+Ha+i9DiuN8T4u0rdM1SeGwDwjOTIu3Ud48Anh0MSUgAowVLMRwqQ81b8OQTTc1hlNGoDQ5RTnQMyE/SGQ0btifJ9ONwkl8xlUjGoPSVC61ZS+2QNbSvZ1VYBDmV9YQ0xHV3wEL/IZ8ypsGzXdzg6Pi8=
