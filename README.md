@@ -9,7 +9,7 @@ treat infrastructure as code!
 
 1. Download the latest compiled binary from [GitHub releases][releases].
 
-1. Unzip/untar the archive.
+1. Untar the archive.
 
 1. Move it into `$HOME/.terraform.d/plugins`:
 
