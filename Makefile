@@ -2,9 +2,13 @@ NAME=terraform-provider-filesystem
 GOOSES = darwin linux windows
 GOARCHES = amd64
 
+export GO111MODULE = on
+export GOFLAGS = -mod=vendor
+
 deps:
-	@go get -u ./...
+	@go get -mod=" -u -t ./...
 	@go mod tidy
+	@go mod vendor
 .PHONY: deps
 
 dev:
@@ -16,16 +20,23 @@ build:
 	@for GOOS in ${GOOSES}; do \
 		for GOARCH in ${GOARCHES}; do \
 			echo "Building $${GOOS}/$${GOARCH}" ; \
-			go build \
+			GOOS=$${GOOS} GOARCH=$${GOARCH} go build \
 				-a \
 				-ldflags "-s -w -extldflags 'static'" \
 				-installsuffix cgo \
 				-tags netgo \
-				-o build/${NAME}_$${GOOS}_$${GOARCH} \
+				-o build/$${GOOS}_$${GOARCH}/${NAME} \
 				. ; \
 		done ; \
 	done
 .PHONY: build
+
+compress:
+	@for dir in $$(find build/* -type d); do \
+		f=$$(basename $$dir) ; \
+		tar -C build -czf build/$$f.tgz $$f ; \
+	done
+.PHONY: compress
 
 test:
 	@go test -short -parallel=40 ./...
