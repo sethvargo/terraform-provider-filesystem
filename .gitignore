@@ -4,5 +4,6 @@ terraform.tfstate*
 *.log
 
 build/
+dist/
 
 examples/**/.ssh
