@@ -177,6 +177,7 @@ func atomicWrite(i *atomicWriteInput) error {
 	return nil
 }
 
+// ref: https://gist.github.com/var23rav/23ae5d0d4d830aff886c3c970b8f6c6b
 func MoveFile(sourcePath, destPath string) error {
     inputFile, err := os.Open(sourcePath)
     if err != nil {
