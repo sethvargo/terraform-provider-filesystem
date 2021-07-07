@@ -166,7 +166,7 @@ func atomicWrite(i *atomicWriteInput) error {
 		}
 	}
 
-	if err := os.MoveFile(f.Name(), i.dest); err != nil {
+	if err := MoveFile(f.Name(), i.dest); err != nil {
 		return errors.Wrap(err, "failed to rename")
 	}
 
