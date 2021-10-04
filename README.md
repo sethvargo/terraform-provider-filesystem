@@ -88,6 +88,9 @@ Arguments are provided as inputs to the resource, in the `*.tf` file.
 
 Attributes are values that are only known after creation.
 
+- `base64contents` `(string)` - the contents of the file as a base64 encoded
+  string. Useful for binary files.
+
 - `contents` `(string)` - the contents of the file as a string. Contents are
   converted to a string, so it is not recommended you use this resource on
   binary files.

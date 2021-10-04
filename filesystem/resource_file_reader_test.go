@@ -1,6 +1,7 @@
 package filesystem
 
 import (
+	"encoding/base64"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -16,6 +17,7 @@ func TestFileSystemFileReader(t *testing.T) {
 		t.Parallel()
 
 		contents := "This is some content!"
+		base64contents := base64.StdEncoding.EncodeToString([]byte(contents))
 
 		f, err := ioutil.TempFile("", "")
 		if err != nil {
@@ -59,6 +61,9 @@ func TestFileSystemFileReader(t *testing.T) {
 							t.Errorf("expected %q to be %q", act, exp)
 						}
 						if act, exp := attrs["contents"], contents; act != exp {
+							t.Errorf("expected %q to be %q", act, exp)
+						}
+						if act, exp := attrs["base64contents"], base64contents; act != exp {
 							t.Errorf("expected %q to be %q", act, exp)
 						}
 						return nil

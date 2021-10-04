@@ -65,6 +65,7 @@ func expandRelativePath(p, root string) (string, error) {
 
 type fileStat struct {
 	name     string
+	bytes    []byte
 	contents string
 	size     int64
 	mode     string
@@ -97,6 +98,7 @@ func readFileAndStats(p string) (*fileStat, error) {
 
 	return &fileStat{
 		name:     stat.Name(),
+		bytes:    contents,
 		contents: string(contents),
 		size:     stat.Size(),
 		mode:     fmt.Sprintf("%#o", stat.Mode()),

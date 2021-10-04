@@ -16,6 +16,8 @@
 package filesystem
 
 import (
+	"encoding/base64"
+
 	"github.com/hashicorp/terraform/helper/schema"
 )
 
@@ -44,9 +46,16 @@ func resourceFileReader() *schema.Resource {
 			//
 			// Computed values
 			//
+			"base64contents": &schema.Schema{
+				Type:        schema.TypeString,
+				Description: "Raw file contents converted to a base64 encoded string",
+				Computed:    true,
+				Sensitive:   true,
+			},
+
 			"contents": &schema.Schema{
 				Type:        schema.TypeString,
-				Description: "Raw file contents",
+				Description: "Raw file contents converted to a string",
 				Computed:    true,
 				Sensitive:   true,
 			},
@@ -98,7 +107,10 @@ func resourceFileReaderRead(d *schema.ResourceData, meta interface{}) error {
 		return err
 	}
 
+	b64 := base64.StdEncoding.EncodeToString(stat.bytes)
+
 	d.Set("name", stat.name)
+	d.Set("base64contents", b64)
 	d.Set("contents", stat.contents)
 	d.Set("size", stat.size)
 	d.Set("mode", stat.mode)
