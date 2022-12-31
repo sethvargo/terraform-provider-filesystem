@@ -7,3 +7,4 @@ build/
 dist/
 
 examples/**/.ssh
+examples/**/*.txt
