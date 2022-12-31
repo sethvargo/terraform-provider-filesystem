@@ -1,0 +1,29 @@
+name: 'Test'
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - uses: 'actions/checkout@v3'
+
+      - uses: 'actions/setup-go@v3'
+        with:
+          go-version: '1.18'
+
+      - run: 'go mod download'
+
+      - run: 'make test-acc'
